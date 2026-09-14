@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. FAQ akordeón a modály
   initFaqAccordion();
   initModals();
+
+  // 7. Responzívna mobilná navigácia
+  initMobileNav();
 });
 
 // ==========================================================================
@@ -792,3 +795,38 @@ function initModals() {
     });
   }
 }
+
+// ==========================================================================
+// 7. Mobilná Navigácia (Hamburger Menu)
+// ==========================================================================
+function initMobileNav() {
+  const toggle = document.getElementById('mobileMenuToggle');
+  const navLinks = document.querySelector('.nav-links');
+  if (!toggle || !navLinks) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = navLinks.classList.toggle('open');
+    toggle.classList.toggle('active', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Zavrieť menu po kliknutí na ľubovoľný odkaz
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Zavrieť pri kliknutí kdekoľvek mimo navigácie
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !toggle.contains(e.target) && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
