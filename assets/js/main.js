@@ -319,11 +319,11 @@ function initCalculator() {
     }
   };
 
-  // Posuvník výmery (m²)
+  // Posuvník výmery (m²) - instantný plynulý prepočet bez skákania
   areaSlider.addEventListener('input', (e) => {
     state.area = parseInt(e.target.value, 10);
     areaDisplay.textContent = `${state.area} m²`;
-    calculatePrice();
+    calculatePrice(true);
   });
 
   // Prepínače izieb (1, 2, 3, 4+)
@@ -368,7 +368,7 @@ function initCalculator() {
   });
 
   // Výpočtová logika rekonštrukcie (Slovensko 2026 sadzby)
-  function calculatePrice() {
+  function calculatePrice(instant = false) {
     const baseRates = {
       usporny: { min: 290, max: 390 },
       standard: { min: 460, max: 620 },
@@ -454,17 +454,17 @@ function initCalculator() {
     if (state.area > 80) { weeksMin = 6; weeksMax = 10; }
     if (state.standard === 'premium') { weeksMin += 2; weeksMax += 3; }
 
-    // Aktualizácia DOM s plynulou animáciou čísel
-    animateNumber(priceMinEl, totalMin);
-    animateNumber(priceMaxEl, totalMax);
-    animateNumber(laborCostEl, laborCost);
-    animateNumber(materialCostEl, materialCost);
+    // Aktualizácia DOM (instantne pri posúvaní jazdca, plynule animovane pri prepínačoch)
+    animateNumber(priceMinEl, totalMin, instant);
+    animateNumber(priceMaxEl, totalMax, instant);
+    animateNumber(laborCostEl, laborCost, instant);
+    animateNumber(materialCostEl, materialCost, instant);
     durationEl.textContent = `${weeksMin} – ${weeksMax} týždňov`;
 
     // Synchronizácia s plávajúcou lištou (Sticky Bar)
     if (stickyPriceMin && stickyPriceMax && stickySpec) {
-      animateNumber(stickyPriceMin, totalMin);
-      animateNumber(stickyPriceMax, totalMax);
+      animateNumber(stickyPriceMin, totalMin, instant);
+      animateNumber(stickyPriceMax, totalMax, instant);
       const standardLabels = { usporny: 'Úsporný', standard: 'Štandard', premium: 'Prémiový' };
       stickySpec.textContent = `${state.rooms}-izbový • ${state.area} m² • ${standardLabels[state.standard]}`;
     }
@@ -498,15 +498,30 @@ function initCalculator() {
     });
   }
 
-  calculatePrice();
+  calculatePrice(false);
 }
 
-// Plynulá animácia čísel (requestAnimationFrame)
-function animateNumber(element, targetVal) {
+// Plynulá animácia čísel (requestAnimationFrame) so zamedzením kolízií a skákania
+function animateNumber(element, targetVal, instant = false) {
   if (!element) return;
+
+  // Ak už beží animácia na tomto elemente, zrušíme ju, aby sa neprekrývali
+  if (element._animId) {
+    cancelAnimationFrame(element._animId);
+    element._animId = null;
+  }
+
+  // Pri posúvaní jazdca aktualizujeme hodnotu okamžite bez latencie
+  if (instant) {
+    element.textContent = `${targetVal.toLocaleString('sk-SK')} €`;
+    return;
+  }
+
   const currentVal = parseInt(element.textContent.replace(/\s/g, '').replace('€', ''), 10) || targetVal;
   const diff = targetVal - currentVal;
-  const duration = 280;
+  if (diff === 0) return;
+
+  const duration = 250;
   const startTime = performance.now();
 
   function update(now) {
@@ -516,10 +531,12 @@ function animateNumber(element, targetVal) {
     const value = Math.round(currentVal + diff * easeOut);
     element.textContent = `${value.toLocaleString('sk-SK')} €`;
     if (progress < 1) {
-      requestAnimationFrame(update);
+      element._animId = requestAnimationFrame(update);
+    } else {
+      element._animId = null;
     }
   }
-  requestAnimationFrame(update);
+  element._animId = requestAnimationFrame(update);
 }
 
 // ==========================================================================

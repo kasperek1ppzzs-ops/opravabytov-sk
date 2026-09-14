@@ -677,10 +677,14 @@ a {
   color: #ffffff;
   letter-spacing: -0.03em;
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 .price-range span {
   color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
 }
 
 .breakdown-list {
@@ -697,7 +701,9 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
   font-size: 0.92rem;
+  min-height: 28px;
 }
 
 .breakdown-row .label {
@@ -705,11 +711,19 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex: 1;
+  min-width: 0;
 }
 
 .breakdown-row .val {
   font-weight: 700;
   color: var(--text-main);
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  min-width: 95px;
 }
 
 /* Interaktívny Before / After Slider */
