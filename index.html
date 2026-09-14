@@ -156,18 +156,18 @@
           </a>
         </div>
 
-        <!-- Rýchle štatistiky trhu -->
+        <!-- Rýchle štatistiky trhu (Animované počítadlá & Spotlight) -->
         <div class="hero-stats">
-          <div class="stat-box">
-            <div class="stat-value">580 €</div>
+          <div class="stat-box spotlight-card">
+            <div class="stat-value" data-counter="580" data-suffix=" €">580 €</div>
             <div class="stat-label">Priemerná cena / m² v SR (štandard)</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-value">4 – 6 týždňov</div>
+          <div class="stat-box spotlight-card">
+            <div class="stat-value" data-counter-range="4|6" data-suffix=" týždňov">4 – 6 týždňov</div>
             <div class="stat-label">Typická dĺžka kompletnej prerábky</div>
           </div>
-          <div class="stat-box">
-            <div class="stat-value">15 – 25 %</div>
+          <div class="stat-box spotlight-card">
+            <div class="stat-value" data-counter-range="15|25" data-suffix=" %">15 – 25 %</div>
             <div class="stat-label">Možná úspora pri včasnom harmonograme</div>
           </div>
         </div>
@@ -704,6 +704,28 @@
     </div>
   </footer>
 
+  <!-- Plávajúci Sklenený Status Bar Kalkulačky (Glassmorphic Bar) -->
+  <aside id="calcStickyBar" class="calc-sticky-bar" aria-label="Súhrn kalkulácie">
+    <div class="container sticky-bar-inner">
+      <div class="sticky-bar-left">
+        <div class="sticky-pulse"></div>
+        <div class="sticky-bar-info">
+          <span class="sticky-bar-label">Váš odhad rekonštrukcie:</span>
+          <div class="sticky-bar-price">
+            <span id="stickyPriceMin">38 500 €</span> – <span id="stickyPriceMax">44 200 €</span>
+          </div>
+        </div>
+        <div class="sticky-bar-spec" id="stickySpec">3-izbový • 72 m² • Štandard</div>
+      </div>
+      <div class="sticky-bar-actions">
+        <a href="#kalkulacka" class="btn btn-secondary btn-sm">Upraviť v kalkulačke</a>
+        <button type="button" class="btn btn-primary btn-glow btn-sm" data-open-modal="contact" data-modal-type="dopyt">
+          Získať ponuku &rarr;
+        </button>
+      </div>
+    </div>
+  </aside>
+
   <!-- Modálne okno pre dopyt / kontakt -->
   <div id="contactModal" class="modal-overlay">
     <div class="modal-content">
@@ -748,6 +770,10 @@
     </div>
   </div>
 
+  <!-- Kinetické scrollovanie a animácie (Lenis & GSAP) -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

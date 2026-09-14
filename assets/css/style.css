@@ -47,7 +47,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   color-scheme: dark;
   font-family: var(--font-main);
   background-color: var(--bg-dark);
@@ -55,31 +54,70 @@ html {
   line-height: 1.6;
 }
 
+/* Lenis Kinetické Scrollovanie */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
   overflow-x: hidden;
   position: relative;
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.07) 0%, transparent 40%),
-    radial-gradient(circle at 85% 65%, rgba(6, 182, 212, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 45%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
     linear-gradient(to bottom, #070a12, #0b1120);
   min-height: 100vh;
 }
 
-/* Jemná technická mriežka na pozadí */
+/* Živá technická blueprint mriežka s laserovým skenerom */
 .blueprint-grid {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1200px;
+  height: 1400px;
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
+}
+
+.blueprint-grid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(245, 158, 11, 0.6) 30%, rgba(6, 182, 212, 0.8) 50%, rgba(245, 158, 11, 0.6) 70%, transparent 100%);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), 0 0 25px rgba(6, 182, 212, 0.3);
+  opacity: 0.65;
+  animation: blueprintScan 14s infinite ease-in-out;
+}
+
+@keyframes blueprintScan {
+  0% { top: -2%; opacity: 0; }
+  10% { opacity: 0.7; }
+  85% { opacity: 0.7; }
+  100% { top: 102%; opacity: 0; }
 }
 
 .container {
@@ -1171,6 +1209,165 @@ a {
   outline: none;
   border-color: var(--primary);
   background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   Aceternity UI: Spotlight & Radial Mouse Lighting
+   ========================================================================== */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: radial-gradient(450px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), rgba(245, 158, 11, 0.15), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* 3D Tilt Effect on Cards */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.tilt-card:hover {
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), 0 0 20px var(--primary-glow);
+}
+
+/* ==========================================================================
+   Plávajúci Sklenený Status Bar Kalkulačky (Glassmorphism Sticky Bar)
+   ========================================================================== */
+.calc-sticky-bar {
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  z-index: 85;
+  pointer-events: none;
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+.calc-sticky-bar.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.sticky-bar-inner {
+  pointer-events: auto;
+  max-width: 860px;
+  margin: 0 auto;
+  background: rgba(11, 17, 32, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 30px rgba(245, 158, 11, 0.15);
+  border-radius: var(--radius-full);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sticky-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.sticky-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+  animation: pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+.sticky-bar-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.sticky-bar-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.sticky-bar-price {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.sticky-bar-price span {
+  color: var(--primary);
+}
+
+.sticky-bar-spec {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding-left: 14px;
+  border-left: 1px solid var(--border-subtle);
+}
+
+.sticky-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-sm {
+  padding: 7px 18px;
+  font-size: 0.84rem;
+}
+
+@media (max-width: 720px) {
+  .calc-sticky-bar {
+    bottom: 12px;
+  }
+  .sticky-bar-inner {
+    border-radius: var(--radius-md);
+    flex-direction: column;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+  .sticky-bar-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .sticky-bar-spec {
+    display: none;
+  }
+  .sticky-bar-actions {
+    width: 100%;
+  }
+  .sticky-bar-actions .btn {
+    flex: 1;
+  }
 }
 
 /* Print Stylesheet (Pre tlač rozpočtu kalkulačky) */
