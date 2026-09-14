@@ -22,7 +22,7 @@ Projekt **OpravaBytov.sk** je navrhnutý s dvojakým strategickým cieľom:
    * Diskrétny, vysoko konverzný predajný portál (`predaj.html`).
    * **3 flexibilné modely spolupráce:**
      * **Jednorazový odkup (Predaj):** 1 490 € (trvalý prepis držiteľa v SK-NIC).
-     * **Mesačný podnájom (Lease):** 50 € / mesiac (presmerovanie na firemný web alebo kontakty na portáli).
+     * **Mesačný prenájom (Lease):** 50 € / mesiac (presmerovanie na firemný web alebo kontakty na portáli).
      * **Nájom s odkúpením (Rent-to-own):** 149 € / mesiac na 12 mesiacov.
 
 ---
@@ -74,7 +74,7 @@ Doména `opravabytov.sk` v minulosti obsahovala aktívny web stavebnej firmy. Ab
 │   └── js/
 │       └── main.js           # Výpočtový engine, before/after slider, modaly
 ├── index.html                # Hlavný portál a interaktívny kalkulátor
-├── predaj.html               # Akvizičná a podnájomná stránka pre firmy
+├── predaj.html               # Akvizičná a prenájmová stránka pre firmy
 ├── 404.html                  # Vlastná chybová stránka
 ├── CNAME                     # Konfigurácia domény pre GitHub Pages
 ├── _redirects                # Pravidlá 301 presmerovaní pre Cloudflare
