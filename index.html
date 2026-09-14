@@ -12,7 +12,69 @@
   <meta property="og:url" content="https://opravabytov.sk/">
   <meta property="og:title" content="Rekonštrukcia bytu 2026 – Kalkulačka ceny | OpravaBytov.sk">
   <meta property="og:description" content="Zistite presný orientačný rozpočet na rekonštrukciu bytu, jadra a kúpeľne pre celé Slovensko za 30 sekúnd.">
-  <meta property="og:image" content="https://opravabytov.sk/assets/og-image.png">
+  <meta property="og:image" content="https://opravabytov.sk/assets/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://opravabytov.sk/assets/images/og-image.jpg">
+
+  <!-- Schema.org Structured Data (JSON-LD) pre bohaté výsledky v Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://opravabytov.sk/#website",
+        "url": "https://opravabytov.sk/",
+        "name": "OpravaBytov.sk",
+        "description": "Slovenský cenový sprievodca a interaktívna kalkulačka nákladov rekonštrukcií bytov 2026",
+        "inLanguage": "sk-SK"
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://opravabytov.sk/#calculator",
+        "name": "Kalkulačka ceny rekonštrukcie bytu 2026",
+        "url": "https://opravabytov.sk/#kalkulacka",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://opravabytov.sk/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Potrebujem na rekonštrukciu bytu stavebné povolenie?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Na bežné výmeny rozvodov, podláh a obkladov stačí ohlásenie drobnej stavby. Stavebné povolenie je nutné vtedy, ak zasahujete do nosných konštrukcií domu, meníte vonkajší vzhľad stavby alebo zásadne meníte spôsob užívania priestoru. Pred búraním akejkoľvek steny si vždy vyžiadajte statický posudok."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Koľko percent z rozpočtu si treba nechať ako rezervu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pri rekonštrukciách starších bytov sa takmer vždy objavia nepredvídané okolnosti – nerovné steny, zvetraný betón či skryté rozvody. Odborníci odporúčajú mať finančnú rezervu vo výške 10 až 15 % z celkového plánovaného rozpočtu."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Ako bezpečne platiť stavebnej firme?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nikdy neplaťte celú sumu vopred. Štandardný a bezpečný postup je rozdelenie platby do etáp (záloha na materiál, priebežné platby po dokončení a prebratí jednotlivých fáz) a záverečná platba (5–10 %) po bezchybnom odovzdaní diela a doručení revíznych správ."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -107,6 +169,22 @@
           <div class="stat-box">
             <div class="stat-value">15 – 25 %</div>
             <div class="stat-label">Možná úspora pri včasnom harmonograme</div>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges-wrap">
+          <div class="trust-badge-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Overené trhové sadzby SR 2026</span>
+          </div>
+          <div class="trust-badge-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Nezávislý a transparentný výpočet</span>
+          </div>
+          <div class="trust-badge-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            <span>PDF export rozpočtu zdarma</span>
           </div>
         </div>
       </div>
@@ -289,26 +367,14 @@
 
         <div class="compare-card">
           <div class="compare-container">
-            <!-- Pred rekonštrukciou (Podklad) -->
+            <!-- Pred rekonštrukciou (Podklad - reálna fotografia) -->
             <div class="compare-image compare-before">
               <span class="compare-badge badge-before">Pôvodný stav (Pred)</span>
-              <!-- Dekoratívna SVG schéma starého jadra -->
-              <div style="position: absolute; bottom: 30px; right: 30px; color: rgba(255,255,255,0.4); text-align: right; font-family: monospace; font-size: 0.85rem;">
-                <div>[Staré umakartové jadro]</div>
-                <div>Hliníkové rozvody TN-C</div>
-                <div>Pôvodné liatinové odpady</div>
-              </div>
             </div>
 
-            <!-- Po rekonštrukcii (Orezaná vrstva) -->
+            <!-- Po rekonštrukcii (Orezaná vrstva - reálna fotografia) -->
             <div class="compare-image compare-after">
               <span class="compare-badge badge-after">Moderná realizácia (Po)</span>
-              <!-- Dekoratívna SVG schéma nového jadra -->
-              <div style="position: absolute; bottom: 30px; left: 30px; color: rgba(245,158,11,0.9); font-family: monospace; font-size: 0.85rem;">
-                <div>[Murované Ytong jadro]</div>
-                <div>Medená elektroinštalácia + prúdové chrániče</div>
-                <div>Veľkoformátový gres & walk-in kút</div>
-              </div>
             </div>
 
             <!-- Rukoväť posuvníka -->
