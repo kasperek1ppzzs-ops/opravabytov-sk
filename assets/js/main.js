@@ -461,12 +461,17 @@ function initCalculator() {
     animateNumber(materialCostEl, materialCost, instant);
     durationEl.textContent = `${weeksMin} – ${weeksMax} týždňov`;
 
-    // Synchronizácia s plávajúcou lištou (Sticky Bar)
+    // Synchronizácia s plávajúcej lištou (Sticky Bar)
     if (stickyPriceMin && stickyPriceMax && stickySpec) {
       animateNumber(stickyPriceMin, totalMin, instant);
       animateNumber(stickyPriceMax, totalMax, instant);
       const standardLabels = { usporny: 'Úsporný', standard: 'Štandard', premium: 'Prémiový' };
       stickySpec.textContent = `${state.rooms}-izbový • ${state.area} m² • ${standardLabels[state.standard]}`;
+    }
+
+    // Okamžitá synchronizácia s dedikovaným tlačovým hárkom
+    if (typeof updatePrintSheet === 'function') {
+      updatePrintSheet(totalMin, totalMax, laborCost, materialCost);
     }
   }
 
@@ -491,14 +496,109 @@ function initCalculator() {
     }, { passive: true });
   }
 
+  // Mapovanie názvov remesiel a štandardov pre tlačový protokol a dopyt
+  const taskLabels = {
+    electro: 'Kompletná elektroinštalácia & ističe',
+    plumbing: 'Vodoinštalácia & kanalizačné odpady',
+    bathroom: 'Kúpeľňa & WC (jadro, obklady, sanita)',
+    walls: 'Stierky, omietky & maľovanie',
+    floors: 'Nivelácia & pokládka podláh',
+    ceilings: 'Sadrokartónové podhľady & LED',
+    doors: 'Interiérové dvere & obložkové zárubne',
+    kitchen: 'Príprava inštalácií pre kuchynskú linku'
+  };
+
+  const standardLabels = {
+    usporny: 'Úsporný (Základné funkčné materiály, rozumný rozpočet)',
+    standard: 'Štandard (Materiály overenej strednej triedy)',
+    premium: 'Prémiový (Veľkoformátové obklady, bezfalcové dvere, dizajnová sanita)'
+  };
+
+  function updatePrintSheet(tMin, tMax, lCost, mCost) {
+    const printDate = document.getElementById('printDate');
+    const printCode = document.getElementById('printCode');
+    const printRooms = document.getElementById('printRooms');
+    const printArea = document.getElementById('printArea');
+    const printStandard = document.getElementById('printStandard');
+    const printDuration = document.getElementById('printDuration');
+    const printTasksList = document.getElementById('printTasksList');
+    const printLaborCost = document.getElementById('printLaborCost');
+    const printMaterialCost = document.getElementById('printMaterialCost');
+    const printTotalPrice = document.getElementById('printTotalPrice');
+
+    if (!printDate) return;
+
+    // Aktuálny dátum vystavenia
+    const now = new Date();
+    printDate.textContent = now.toLocaleDateString('sk-SK', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+    // Evidenčný kód kalkulácie
+    const hash = Math.abs((state.area * 73 + state.rooms * 139 + state.standard.length * 17) % 9000 + 1000);
+    if (printCode) printCode.textContent = `#OB-2026-${hash}`;
+
+    // Parametre nehnuteľnosti
+    if (printRooms) printRooms.textContent = `${state.rooms}-izbový byt`;
+    if (printArea) printArea.textContent = `${state.area} m²`;
+    if (printStandard) printStandard.textContent = standardLabels[state.standard] || 'Štandard';
+    if (printDuration && durationEl) printDuration.textContent = durationEl.textContent;
+
+    // Položky prác
+    if (printTasksList) {
+      printTasksList.innerHTML = Object.entries(taskLabels).map(([key, label]) => {
+        const isActive = !!state.tasks[key];
+        const icon = isActive ? '✓' : '✕';
+        const cls = isActive ? 'active' : 'inactive';
+        return `
+          <div class="print-task-item ${cls}">
+            <span class="print-task-icon">${icon}</span>
+            <span>${label}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Rekapitulácia rozpočtu
+    const lVal = (lCost !== undefined) ? `${lCost.toLocaleString('sk-SK')} €` : (laborCostEl ? laborCostEl.textContent : '');
+    const mVal = (mCost !== undefined) ? `${mCost.toLocaleString('sk-SK')} €` : (materialCostEl ? materialCostEl.textContent : '');
+    const minVal = (tMin !== undefined) ? `${tMin.toLocaleString('sk-SK')} €` : (priceMinEl ? priceMinEl.textContent : '');
+    const maxVal = (tMax !== undefined) ? `${tMax.toLocaleString('sk-SK')} €` : (priceMaxEl ? priceMaxEl.textContent : '');
+
+    if (printLaborCost && lVal) printLaborCost.textContent = lVal;
+    if (printMaterialCost && mVal) printMaterialCost.textContent = mVal;
+    if (printTotalPrice && minVal && maxVal) {
+      printTotalPrice.textContent = `${minVal} – ${maxVal}`;
+    }
+  }
+
+  // Globálne sprístupnenie stavu a funkcie kalkulačky
+  window._updatePrintSheet = updatePrintSheet;
+  window._getCalcState = () => ({
+    rooms: state.rooms,
+    area: state.area,
+    standard: state.standard,
+    standardName: standardLabels[state.standard] || 'Štandard',
+    duration: durationEl ? durationEl.textContent : '5 – 7 týždňov',
+    priceMin: priceMinEl ? priceMinEl.textContent : '',
+    priceMax: priceMaxEl ? priceMaxEl.textContent : '',
+    activeTasks: Object.entries(taskLabels)
+      .filter(([k]) => state.tasks[k])
+      .map(([_, name]) => name)
+  });
+
   // Tlač / PDF Export rozpočtu
   if (printBtn) {
     printBtn.addEventListener('click', () => {
+      updatePrintSheet();
       window.print();
     });
   }
 
+  window.addEventListener('beforeprint', () => {
+    updatePrintSheet();
+  });
+
   calculatePrice(false);
+  updatePrintSheet();
 }
 
 // Plynulá animácia čísel (requestAnimationFrame) so zamedzením kolízií a skákania
@@ -627,6 +727,21 @@ function initModals() {
       } else {
         if (modalTitle) modalTitle.textContent = 'Získať nezáväznú cenovú ponuku';
         if (modalSubjectInput) modalSubjectInput.value = 'Dopyt na rekonštrukciu bytu';
+
+        // Inteligentné predvyplnenie údajov z kalkulačky do správy
+        const msgTextarea = document.getElementById('fMsg');
+        if (msgTextarea && typeof window._getCalcState === 'function') {
+          const calc = window._getCalcState();
+          if (!msgTextarea.value || msgTextarea.dataset.autofilled === 'true') {
+            msgTextarea.value = `Dobrý deň,\nprosím o cenovú ponuku a obhliadku na rekonštrukciu bytu na základe kalkulačky:\n` +
+              `• Byt: ${calc.rooms}-izbový, výmera: ${calc.area} m²\n` +
+              `• Úroveň realizácie: ${calc.standardName}\n` +
+              `• Orientačný rozpočet: ${calc.priceMin} – ${calc.priceMax} (odhad: ${calc.duration})\n` +
+              `• Vybrané práce: ${calc.activeTasks.join(', ')}\n\n` +
+              `Môj časový horizont realizácie: `;
+            msgTextarea.dataset.autofilled = 'true';
+          }
+        }
       }
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -648,6 +763,13 @@ function initModals() {
       document.body.style.overflow = '';
     }
   });
+
+  const msgTextarea = document.getElementById('fMsg');
+  if (msgTextarea) {
+    msgTextarea.addEventListener('input', () => {
+      msgTextarea.dataset.autofilled = 'false';
+    });
+  }
 
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {

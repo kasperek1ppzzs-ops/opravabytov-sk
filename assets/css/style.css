@@ -1385,21 +1385,256 @@ a {
   }
 }
 
-/* Print Stylesheet (Pre tlač rozpočtu kalkulačky) */
+/* ==========================================================================
+   11. Print Stylesheet (Reprezentatívny A4 tlačový protokol pre kalkulačku)
+   ========================================================================== */
+.print-sheet {
+  display: none !important;
+}
+
 @media print {
-  body {
-    background: #fff !important;
-    color: #000 !important;
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
   }
-  .site-header, .sale-banner, .site-footer, .btn, .blueprint-grid, .modal-overlay {
+
+  /* Reset pre tlač na čistý biely papier */
+  html, body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Skryť všetky bežné webové sekcie, navigácie a interaktívne prvky */
+  body > *:not(.print-sheet),
+  .site-header,
+  .sale-banner,
+  .site-footer,
+  .calc-sticky-bar,
+  .modal-overlay,
+  .blueprint-grid,
+  .hero,
+  .section-comparison,
+  .section-calculator,
+  .section-cities,
+  .section-guide,
+  .section-faq,
+  button,
+  .btn,
+  a {
     display: none !important;
   }
-  .calc-card {
-    border: 1px solid #ccc !important;
-    box-shadow: none !important;
-    grid-template-columns: 1fr !important;
+
+  /* Zobraziť výhradne dedikovaný A4 certifikát */
+  .print-sheet {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    box-sizing: border-box !important;
   }
-  .price-range {
-    color: #000 !important;
+
+  .print-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    padding-bottom: 12px !important;
+    border-bottom: 2.5px solid #0284c7 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .print-logo-text {
+    font-size: 20pt !important;
+    font-weight: 800 !important;
+    color: #0f172a !important;
+    letter-spacing: -0.5px !important;
+  }
+
+  .print-logo-text span {
+    color: #0284c7 !important;
+  }
+
+  .print-tagline {
+    font-size: 8.5pt !important;
+    color: #64748b !important;
+    margin-top: 3px !important;
+  }
+
+  .print-meta {
+    text-align: right !important;
+    font-size: 8.5pt !important;
+    color: #334155 !important;
+    line-height: 1.45 !important;
+  }
+
+  .print-section {
+    margin-bottom: 13px !important;
+  }
+
+  .print-section-title {
+    font-size: 10pt !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin-bottom: 7px !important;
+    padding-bottom: 3px !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .print-grid-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px 14px !important;
+  }
+
+  .print-param-box {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    padding: 6px 10px !important;
+    border-radius: 4px !important;
+    font-size: 8.5pt !important;
+  }
+
+  .print-param-label {
+    color: #64748b !important;
+  }
+
+  .print-param-val {
+    font-weight: 700 !important;
+    color: #0f172a !important;
+  }
+
+  .print-tasks-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 4px 14px !important;
+  }
+
+  .print-task-item {
+    font-size: 8.5pt !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 2.5px 0 !important;
+  }
+
+  .print-task-item.active {
+    color: #0f172a !important;
+    font-weight: 600 !important;
+  }
+
+  .print-task-item.inactive {
+    color: #94a3b8 !important;
+    text-decoration: line-through !important;
+  }
+
+  .print-task-icon {
+    font-size: 9pt !important;
+    font-weight: 800 !important;
+    display: inline-block !important;
+    width: 14px !important;
+  }
+
+  .print-task-item.active .print-task-icon {
+    color: #16a34a !important;
+  }
+
+  .print-task-item.inactive .print-task-icon {
+    color: #cbd5e1 !important;
+  }
+
+  .print-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-top: 4px !important;
+    font-size: 8.5pt !important;
+  }
+
+  .print-table th {
+    background: #f1f5f9 !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 6px 10px !important;
+    text-align: left !important;
+    font-weight: 700 !important;
+    color: #334155 !important;
+  }
+
+  .print-table td {
+    border: 1px solid #e2e8f0 !important;
+    padding: 6px 10px !important;
+  }
+
+  .print-subtext {
+    font-size: 7.5pt !important;
+    color: #64748b !important;
+    margin-top: 2px !important;
+  }
+
+  .print-table-total {
+    background: #f8fafc !important;
+  }
+
+  .print-table-total td {
+    border-top: 2px solid #0f172a !important;
+    border-bottom: 2px solid #0f172a !important;
+    padding: 8px 10px !important;
+    font-weight: 700 !important;
+    font-size: 9pt !important;
+  }
+
+  .print-total-price {
+    font-size: 12pt !important;
+    font-weight: 800 !important;
+    color: #0284c7 !important;
+  }
+
+  .print-info-box {
+    background: #f8fafc !important;
+    border-left: 3.5px solid #0284c7 !important;
+    border-right: 1px solid #e2e8f0 !important;
+    border-top: 1px solid #e2e8f0 !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 7px 10px !important;
+    font-size: 7.5pt !important;
+    line-height: 1.4 !important;
+    color: #475569 !important;
+    margin-top: 8px !important;
+    border-radius: 0 4px 4px 0 !important;
+  }
+
+  .print-info-box h4 {
+    font-size: 8pt !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 0 3px 0 !important;
+  }
+
+  .print-info-box p {
+    margin: 0 !important;
+  }
+
+  .print-footer {
+    margin-top: 12px !important;
+    padding-top: 8px !important;
+    border-top: 1px solid #e2e8f0 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    font-size: 7.5pt !important;
+    color: #64748b !important;
   }
 }
+

@@ -19,6 +19,8 @@
   <meta name="twitter:image" content="https://opravabytov.sk/assets/images/og-image.jpg">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="keywords" content="rekonštrukcia bytu, kalkulačka rekonštrukcie, cena rekonštrukcie bytu 2026, rekonštrukcia bytového jadra, rekonštrukcia kúpeľne, oprava bytov">
+  <meta name="theme-color" content="#070a12">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- Schema.org Structured Data (JSON-LD) pre bohaté výsledky v Google -->
   <script type="application/ld+json">
@@ -771,6 +773,106 @@
           Odoslať nezáväzný dopyt &rarr;
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- Dedikovaný A4 certifikát / protokol rozpočtu pre tlač & PDF export -->
+  <div id="printSheet" class="print-sheet" aria-hidden="true">
+    <div class="print-header">
+      <div class="print-brand">
+        <div class="print-logo-text">OpravaBytov<span>.sk</span></div>
+        <div class="print-tagline">Nezávislý cenový sprievodca a kalkulátor nákladov rekonštrukcie</div>
+      </div>
+      <div class="print-meta">
+        <div class="print-meta-item"><strong>Dokument:</strong> Orientačná kalkulácia nákladov</div>
+        <div class="print-meta-item"><strong>Dátum vystavenia:</strong> <span id="printDate">--</span></div>
+        <div class="print-meta-item"><strong>Kód kalkulácie:</strong> <span id="printCode">#OB-2026-7284</span></div>
+        <div class="print-meta-item"><strong>Platnosť cenníkov:</strong> Rok 2026 (Slovenská republika)</div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3 class="print-section-title">1. Zadané parametre nehnuteľnosti</h3>
+      <div class="print-grid-2">
+        <div class="print-param-box">
+          <span class="print-param-label">Typ bytu:</span>
+          <span class="print-param-val" id="printRooms">3-izbový byt</span>
+        </div>
+        <div class="print-param-box">
+          <span class="print-param-label">Podlahová výmera:</span>
+          <span class="print-param-val" id="printArea">72 m²</span>
+        </div>
+        <div class="print-param-box">
+          <span class="print-param-label">Úroveň štandardu:</span>
+          <span class="print-param-val" id="printStandard">Štandard (Materiály overenej strednej triedy)</span>
+        </div>
+        <div class="print-param-box">
+          <span class="print-param-label">Predpokladaná dĺžka:</span>
+          <span class="print-param-val" id="printDuration">6 – 10 týždňov</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3 class="print-section-title">2. Rozsah plánovaných stavebných a remeselných prác</h3>
+      <div class="print-tasks-grid" id="printTasksList">
+        <!-- Generované dynamicky z JS -->
+      </div>
+    </div>
+
+    <div class="print-section">
+      <h3 class="print-section-title">3. Finančná rekapitulácia nákladov (Orientačný odhad)</h3>
+      <table class="print-table">
+        <thead>
+          <tr>
+            <th>Položka nákladu</th>
+            <th style="width: 110px; text-align: center;">Pomer</th>
+            <th style="width: 170px; text-align: right;">Orientačná suma</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Remeselné a stavebné práce</strong>
+              <div class="print-subtext">Búranie, elektroinštalácia, vodoinštalácia, obklady, stierky, montáže podláh a dverí</div>
+            </td>
+            <td style="text-align: center; color: #64748b;">cca 54 %</td>
+            <td style="text-align: right; font-weight: 700;" id="printLaborCost">18 500 €</td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Stavebný, inštalačný a sanita materiál</strong>
+              <div class="print-subtext">Kabeláž, rozvádzače, potrubia, penetrácie, lepidlá, omietky, sanita, batérie, obklady</div>
+            </td>
+            <td style="text-align: center; color: #64748b;">cca 46 %</td>
+            <td style="text-align: right; font-weight: 700;" id="printMaterialCost">15 700 €</td>
+          </tr>
+          <tr class="print-table-total">
+            <td colspan="2">
+              <strong>CELKOVÝ ORIENTAČNÝ ROZPOČET (vrátane DPH a odvozu sutiny):</strong>
+            </td>
+            <td style="text-align: right;" class="print-total-price" id="printTotalPrice">
+              33 200 € – 38 400 €
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="print-info-box">
+      <h4>Dôležité upozornenie a odborné odporúčania k realizácii:</h4>
+      <p>
+        Tento rozpočet bol vygenerovaný nezávislým kalkulátorom <strong>OpravaBytov.sk</strong> na základe trhových priemerov remeselných a materiálových cien v SR pre rok 2026. Presná suma závisí od fyzickej obhliadky na mieste, rovinnosti stien a podláh a finálnej špecifikácie materiálov. Pri výbere dodávateľa vždy vyžadujte písomnú <em>Zmluvu o dielo</em>, presný položkový rozpočet (výkaz výmer), harmonogram míľnikov a zádržné 10 % z celkovej ceny až do úspešného prevzatia diela bez vád a nedorobkov.
+      </p>
+    </div>
+
+    <div class="print-footer">
+      <div class="print-footer-left">
+        <strong>OpravaBytov.sk</strong> &bull; Nezávislý stavebný portál &bull; Web: www.opravabytov.sk &bull; E-mail: info@opravabytov.sk
+      </div>
+      <div class="print-footer-right">
+        Strana 1 / 1
+      </div>
     </div>
   </div>
 
