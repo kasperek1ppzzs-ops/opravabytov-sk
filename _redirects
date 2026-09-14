@@ -1,0 +1,6 @@
+# Cloudflare Pages 301 Presmerovania pre historické URL adresy
+/pages/rekonstrukcie           /                        301
+/pages/hodinovy-majster        /                        301
+/blogs/news/*                  /                        301
+/blogs/*                       /                        301
+/pages/*                       /                        301

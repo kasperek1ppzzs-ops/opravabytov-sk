@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rekonštrukcia bytu 2026 – Kalkulačka ceny a overené postupy | OpravaBytov.sk</title>
+  <meta name="description" content="Objektívny sprievodca rekonštrukciou bytu v roku 2026. Interaktívna kalkulačka nákladov, ceny za m² v krajských mestách SR a overené postupy rekonštrukcie bytového jadra.">
+  <link rel="canonical" href="https://opravabytov.sk/">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://opravabytov.sk/">
+  <meta property="og:title" content="Rekonštrukcia bytu 2026 – Kalkulačka ceny | OpravaBytov.sk">
+  <meta property="og:description" content="Zistite presný orientačný rozpočet na rekonštrukciu bytu, jadra a kúpeľne pre celé Slovensko za 30 sekúnd.">
+  <meta property="og:image" content="https://opravabytov.sk/assets/og-image.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'><path d='M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'/></svg>">
+</head>
+<body>
+
+  <!-- Blueprint ambientné pozadie -->
+  <div class="blueprint-grid"></div>
+
+  <!-- Horný banner: Akvizičná ponuka (Stratégia 3 + 7) -->
+  <aside class="sale-banner">
+    <div class="container">
+      <a href="predaj.html">
+        <span class="sale-pill">Exkluzívna príležitosť</span>
+        Táto prémiová slovenská doména a projekt sú k dispozícii na predaj (1 490 €) alebo podnájom (99 €/mes.)
+        <span style="text-decoration: underline; margin-left: 4px;">Zistiť viac &rarr;</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Hlavná navigácia -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        Oprava<span>Bytov</span>.sk
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#kalkulacka">Kalkulačka 2026</a></li>
+          <li><a href="#porovnanie">Pred & Po</a></li>
+          <li><a href="#ceny">Cenový radar miest</a></li>
+          <li><a href="#sprievodca">Postup prác</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="predaj.html" style="color: #fbbf24;">Predaj & Podnájom</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#kalkulacka" class="btn btn-primary btn-glow">Spočítať cenu</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Sekcia -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge">
+          <span class="hero-badge-pulse"></span>
+          Aktuálne trhové sadzby stavebných prác a materiálov (SR 2026)
+        </div>
+
+        <h1>
+          Koľko stojí <span class="text-gradient-gold">rekonštrukcia bytu</span> v roku 2026?
+        </h1>
+
+        <p class="hero-lead">
+          Nenechajte sa zaskočiť nečakanými výdavkami. Vyskúšajte náš presný interaktívny kalkulátor a zistite reálne náklady na materiál, búracie práce a remeselníkov za 30 sekúnd.
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+          <a href="#kalkulacka" class="btn btn-primary btn-glow" style="padding: 14px 32px; font-size: 1.05rem;">
+            Otvoriť kalkulačku rekonštrukcie
+          </a>
+          <a href="#ceny" class="btn btn-secondary" style="padding: 14px 28px;">
+            Pozrieť ceny podľa miest
+          </a>
+        </div>
+
+        <!-- Rýchle štatistiky trhu -->
+        <div class="hero-stats">
+          <div class="stat-box">
+            <div class="stat-value">580 €</div>
+            <div class="stat-label">Priemerná cena / m² v SR (štandard)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">4 – 6 týždňov</div>
+            <div class="stat-label">Typická dĺžka kompletnej prerábky</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">15 – 25 %</div>
+            <div class="stat-label">Možná úspora pri včasnom harmonograme</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kalkulačka Sekcia -->
+    <section id="kalkulacka" class="section-calc">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Interaktívny rozpočet</span>
+          <h2 class="section-title">Kalkulačka nákladov rekonštrukcie na mieru</h2>
+          <p class="section-desc">
+            Vyberte parametre vašej nehnuteľnosti a rozsah plánovaných zásahov. Náš algoritmus okamžite prepočíta orientačný rozpočet na základe aktuálnych cien remesiel a stavebného materiálu v SR.
+          </p>
+        </div>
+
+        <div class="calc-card">
+          <!-- Ovládacie prvky kalkulačky -->
+          <div class="calc-controls">
+            <!-- 1. Počet izieb -->
+            <div class="calc-group">
+              <div class="calc-label">
+                <span>1. Dispozícia bytu</span>
+                <span class="calc-hint">Počet izieb</span>
+              </div>
+              <div class="room-selector">
+                <button type="button" class="room-btn" data-rooms="1">1-izbový</button>
+                <button type="button" class="room-btn" data-rooms="2">2-izbový</button>
+                <button type="button" class="room-btn active" data-rooms="3">3-izbový</button>
+                <button type="button" class="room-btn" data-rooms="4">4+ izbový</button>
+              </div>
+            </div>
+
+            <!-- 2. Výmera v m² -->
+            <div class="calc-group">
+              <div class="calc-label">
+                <span>2. Podlahová plocha bytu</span>
+                <span class="calc-hint" id="areaDisplay">72 m²</span>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" id="areaSlider" class="range-slider" min="20" max="150" value="72" step="1">
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.78rem; color: var(--text-dim); margin-top: 6px;">
+                <span>20 m² (Garzónka)</span>
+                <span>72 m² (Typický 3-izbový)</span>
+                <span>150 m² (Veľký byt)</span>
+              </div>
+            </div>
+
+            <!-- 3. Úroveň štandardu -->
+            <div class="calc-group">
+              <div class="calc-label">
+                <span>3. Požadovaný materiálový štandard</span>
+              </div>
+              <div class="standard-grid">
+                <div class="standard-card" data-standard="usporny">
+                  <div class="standard-name">Úsporný</div>
+                  <div class="standard-rate">~340 € / m²</div>
+                </div>
+                <div class="standard-card active" data-standard="standard">
+                  <div class="standard-name">Štandard</div>
+                  <div class="standard-rate">~580 € / m²</div>
+                </div>
+                <div class="standard-card" data-standard="premium">
+                  <div class="standard-name">Prémium</div>
+                  <div class="standard-rate">~890 € / m²</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Rozsah prác (Položky) -->
+            <div class="calc-group">
+              <div class="calc-label">
+                <span>4. Rozsah plánovaných činností</span>
+                <span style="font-size: 0.8rem; color: var(--text-dim);">Označte položky</span>
+              </div>
+              <div class="tasks-grid">
+                <label class="task-checkbox-label checked">
+                  <input type="checkbox" class="task-checkbox" data-task="electro" checked>
+                  Nová elektroinštalácia
+                </label>
+                <label class="task-checkbox-label checked">
+                  <input type="checkbox" class="task-checkbox" data-task="plumbing" checked>
+                  Vodoinštalácia a odpady
+                </label>
+                <label class="task-checkbox-label checked">
+                  <input type="checkbox" class="task-checkbox" data-task="bathroom" checked>
+                  Murované jadro a kúpeľňa
+                </label>
+                <label class="task-checkbox-label checked">
+                  <input type="checkbox" class="task-checkbox" data-task="walls" checked>
+                  Stierky, sieťka a maľovanie
+                </label>
+                <label class="task-checkbox-label checked">
+                  <input type="checkbox" class="task-checkbox" data-task="floors" checked>
+                  Nivelácia a podlahy / vinyl
+                </label>
+                <label class="task-checkbox-label">
+                  <input type="checkbox" class="task-checkbox" data-task="ceilings">
+                  Sadrokartónové LED stropy
+                </label>
+                <label class="task-checkbox-label checked">
+                  <input type="checkbox" class="task-checkbox" data-task="doors" checked>
+                  Nové dvere a obložkové zárubne
+                </label>
+                <label class="task-checkbox-label checked">
+                  <input type="checkbox" class="task-checkbox" data-task="kitchen" checked>
+                  Príprava a montáž kuchyne
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Výsledkový panel -->
+          <div class="calc-result-panel">
+            <div>
+              <span class="result-badge">Orientačný odhad (SR 2026)</span>
+              
+              <div class="price-display">
+                <div class="price-label">Odhadovaný rozpočet na kľúč:</div>
+                <div class="price-range">
+                  <span id="priceMin">28 500 €</span> – <span id="priceMax">38 200 €</span>
+                </div>
+              </div>
+
+              <!-- Rozpad nákladov -->
+              <div class="breakdown-list">
+                <div class="breakdown-row">
+                  <span class="label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    Remeselné a stavebné práce (cca 54%):
+                  </span>
+                  <span class="val" id="laborCost">18 000 €</span>
+                </div>
+                <div class="breakdown-row">
+                  <span class="label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+                    Stavebný a sanita materiál (cca 46%):
+                  </span>
+                  <span class="val" id="materialCost">15 300 €</span>
+                </div>
+                <div class="breakdown-row">
+                  <span class="label">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Predpokladaná dĺžka realizácie:
+                  </span>
+                  <span class="val text-gradient-cyan" id="projectDuration">5 – 7 týždňov</span>
+                </div>
+              </div>
+
+              <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5;">
+                * Výsledná cena závisí od presného stavu podkladov, zvolených obkladov, sanity a lokality. Uvedená kalkulácia zahŕňa štandardnú DPH a odvoz stavebnej sutiny.
+              </p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <button type="button" class="btn btn-primary btn-glow" data-open-modal data-modal-type="dopyt" style="width: 100%; padding: 14px;">
+                Získať nezáväzné cenové ponuky firiem &rarr;
+              </button>
+              <button type="button" id="printCalcBtn" class="btn btn-secondary" style="width: 100%; font-size: 0.86rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+                Vytlačiť / Uložiť rozpočet (PDF)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interaktívny Porovnávač Pred & Po -->
+    <section id="porovnanie" class="section-comparison">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Vizuálna transformácia</span>
+          <h2 class="section-title">Interaktívne porovnanie: Pôvodný stav vs. Po rekonštrukcii</h2>
+          <p class="section-desc">
+            Potiahnite posuvník v strede a pozrite sa, ako moderné bytové jadro, veľkoformátové obklady a skryté inštalácie premenia panelákový priestor na moderný domov.
+          </p>
+        </div>
+
+        <div class="compare-card">
+          <div class="compare-container">
+            <!-- Pred rekonštrukciou (Podklad) -->
+            <div class="compare-image compare-before">
+              <span class="compare-badge badge-before">Pôvodný stav (Pred)</span>
+              <!-- Dekoratívna SVG schéma starého jadra -->
+              <div style="position: absolute; bottom: 30px; right: 30px; color: rgba(255,255,255,0.4); text-align: right; font-family: monospace; font-size: 0.85rem;">
+                <div>[Staré umakartové jadro]</div>
+                <div>Hliníkové rozvody TN-C</div>
+                <div>Pôvodné liatinové odpady</div>
+              </div>
+            </div>
+
+            <!-- Po rekonštrukcii (Orezaná vrstva) -->
+            <div class="compare-image compare-after">
+              <span class="compare-badge badge-after">Moderná realizácia (Po)</span>
+              <!-- Dekoratívna SVG schéma nového jadra -->
+              <div style="position: absolute; bottom: 30px; left: 30px; color: rgba(245,158,11,0.9); font-family: monospace; font-size: 0.85rem;">
+                <div>[Murované Ytong jadro]</div>
+                <div>Medená elektroinštalácia + prúdové chrániče</div>
+                <div>Veľkoformátový gres & walk-in kút</div>
+              </div>
+            </div>
+
+            <!-- Rukoväť posuvníka -->
+            <div class="compare-handle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg); margin-left: -6px;">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </div>
+
+            <!-- Skrytý posuvníkový vstup pre dotyk a myš -->
+            <input type="range" class="compare-slider-input" min="0" max="100" value="50">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cenový radar podľa slovenských miest -->
+    <section id="ceny" class="section-cities">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Regionálny prehľad</span>
+          <h2 class="section-title">Cenový radar rekonštrukcií bytov v SR (2026)</h2>
+          <p class="section-desc">
+            Ceny stavebných a remeselných prác sa líšia podľa lokality a dopytu. Pozrite si priemerné trhové sadzby za m² podlahovej plochy.
+          </p>
+        </div>
+
+        <div class="cities-grid">
+          <!-- Bratislava -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Bratislava a okolie</span>
+              <span class="city-demand">Vysoký dopyt</span>
+            </div>
+            <div class="city-price-val">650 – 1 200 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">4 – 8 týždňov</span>
+            </div>
+          </div>
+
+          <!-- Košice -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Košice</span>
+              <span class="city-demand">Aktívny trh</span>
+            </div>
+            <div class="city-price-val">500 – 850 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">4 – 6 týždňov</span>
+            </div>
+          </div>
+
+          <!-- Žilina -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Žilina</span>
+              <span class="city-demand">Stabilný</span>
+            </div>
+            <div class="city-price-val">480 – 780 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">4 – 6 týždňov</span>
+            </div>
+          </div>
+
+          <!-- Trnava -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Trnava</span>
+              <span class="city-demand">Vysoký dopyt</span>
+            </div>
+            <div class="city-price-val">520 – 850 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">4 – 7 týždňov</span>
+            </div>
+          </div>
+
+          <!-- Nitra -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Nitra</span>
+              <span class="city-demand">Stabilný</span>
+            </div>
+            <div class="city-price-val">460 – 740 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">4 – 6 týždňov</span>
+            </div>
+          </div>
+
+          <!-- Poprad & Tatry -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Poprad a Podtatransko</span>
+              <span class="city-demand">Vyhľadávané</span>
+            </div>
+            <div class="city-price-val">450 – 720 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">3 – 5 týždňov</span>
+            </div>
+          </div>
+
+          <!-- Banská Bystrica -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Banská Bystrica</span>
+              <span class="city-demand">Stabilný</span>
+            </div>
+            <div class="city-price-val">470 – 750 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">4 – 6 týždňov</span>
+            </div>
+          </div>
+
+          <!-- Prešov -->
+          <div class="city-card">
+            <div class="city-top">
+              <span class="city-name">Prešov</span>
+              <span class="city-demand">Ekonomické</span>
+            </div>
+            <div class="city-price-val">440 – 700 € / m²</div>
+            <div class="city-price-sub">Kompletná rekonštrukcia na kľúč</div>
+            <div class="city-details">
+              <span>Termín realizácie:</span>
+              <span style="font-weight: 600; color: #fff;">3 – 5 týždňov</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6-krokový sprievodca rekonštrukciou -->
+    <section id="sprievodca" class="section-guide">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Overený harmonogram</span>
+          <h2 class="section-title">Rekonštrukcia bytu krok za krokom</h2>
+          <p class="section-desc">
+            Správne načasovanie jednotlivých profesií zabráni prestojom a zbytočným nákladom. Takto postupujú profesionáli:
+          </p>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h3 class="step-title">Projekt, statik a ohlásenie</h3>
+            <p class="step-desc">
+              Posúdenie nosných a nenosných priečok statikom, vypracovanie dispozičného riešenia a podanie ohlásenia drobnej stavby príslušnému stavebnému úradu.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h3 class="step-title">Búracie práce a odvoz odpadu</h3>
+            <p class="step-desc">
+              Demontáž starého jadra, obkladov, podláh, zárubní a nenosných stien. Zabezpečenie kontajnera a legálna ekologická likvidácia stavebnej sutiny.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h3 class="step-title">Hrubé inštalácie (Elektro + Voda)</h3>
+            <p class="step-desc">
+              Ťahanie nových medených káblov, internetových a TV rozvodov, osadenie rozvádzača. Nové rozvody vody a odpadov pre kúpeľňu a kuchyňu.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">04</div>
+            <h3 class="step-title">Murovanie, stierky a nivelácia</h3>
+            <p class="step-desc">
+              Výstavba nových priečok (Ytong / sadrokartón), sieťkovanie, stierkovanie, penetrácia a vyrovnanie podláh samonivelačnou hmotou.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">05</div>
+            <h3 class="step-title">Obklady, sanita a podlahy</h3>
+            <p class="step-desc">
+              Lepenie keramických obkladov a dlažieb, montáž sanity (vaňa, walk-in sprcha, podomietkové moduly), kladenie vinylu alebo plávajúcej podlahy.
+            </p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">06</div>
+            <h3 class="step-title">Finálna kompletizácia a prebratie</h3>
+            <p class="step-desc">
+              Osadenie interiérových dverí a obložiek, montáž zásuviek, svietidiel a kuchynskej linky. Revízna správa elektroinštalácie a odovzdanie bytu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Sekcia -->
+    <section id="faq" class="section-faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Časté otázky</span>
+          <h2 class="section-title">Na čo si dať pozor pri rekonštrukcii</h2>
+          <p class="section-desc">
+            Odpovede na kľúčové otázky o povoleniach, zárukách a platobných podmienkach.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item active">
+            <div class="faq-q">
+              Potrebujem na rekonštrukciu bytu stavebné povolenie?
+              <span>+</span>
+            </div>
+            <div class="faq-a">
+              Na bežné výmeny rozvodov, podláh a obkladov stačí ohlásenie drobnej stavby. Stavebné povolenie je nutné vtedy, ak zasahujete do nosných konštrukcií domu, meníte vonkajší vzhľad stavby alebo zásadne meníte spôsob užívania priestoru. Pred búraním akejkoľvek steny si vždy vyžiadajte statický posudok.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              Koľko percent z rozpočtu si treba nechať ako rezervu?
+              <span>+</span>
+            </div>
+            <div class="faq-a">
+              Pri rekonštrukciách starších bytov (najmä v panelových a tehlových domoch zo 70.–90. rokov) sa takmer vždy objavia nepredvídané okolnosti – nerovné steny, zvetraný betón či skryté rozvody. Odborníci odporúčajú mať finančnú rezervu vo výške 10 až 15 % z celkového plánovaného rozpočtu.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q">
+              Ako bezpečne platiť stavebnej firme?
+              <span>+</span>
+            </div>
+            <div class="faq-a">
+              Nikdy neplaťte celú sumu vopred. Štandardný a bezpečný postup je rozdelenie platby do etáp (záloha na materiál, priebežné platby po dokončení a prebratí jednotlivých fáz ako búranie, inštalácie, omietky) a záverečná platba (5–10 %) po bezchybnom odovzdaní diela a doručení revíznych správ.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diskrétny banner pre predaj a prenájom projektu -->
+    <section style="padding: 40px 0 80px;">
+      <div class="container">
+        <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: var(--radius-lg); padding: 40px; text-align: center;">
+          <span class="sale-pill" style="margin-bottom: 12px; display: inline-block;">Prémiové digitálne aktívum</span>
+          <h3 style="font-size: 1.8rem; margin-bottom: 12px;">Ste stavebná spoločnosť alebo investor?</h3>
+          <p style="color: var(--text-muted); max-width: 650px; margin: 0 auto 24px;">
+            Doména <strong>OpravaBytov.sk</strong> spolu s týmto pripraveným projektom je dostupná na jednorazovú akvizíciu (1 490 €) alebo flexibilný dlhodobý podnájom (99 € / mesiac). Získajte trvalú konkurenčnú výhodu a priamy kanál na zákazníkov.
+          </p>
+          <a href="predaj.html" class="btn btn-primary btn-glow">
+            Pozrieť možnosti predaja a podnájmu &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pätička -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo" style="margin-bottom: 16px;">
+            <div class="logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            Oprava<span>Bytov</span>.sk
+          </div>
+          <p style="color: var(--text-dim); line-height: 1.6; max-width: 320px;">
+            Nezávislý slovenský portál a cenový kalkulátor rekonštrukcií bytov, kúpeľní a bytových jadier. Prehľadné trhové informácie pre majiteľov nehnuteľností.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Kalkulácie</h5>
+          <ul class="footer-links">
+            <li><a href="#kalkulacka">Kalkulačka ceny</a></li>
+            <li><a href="#porovnanie">Pred a po rekonštrukcii</a></li>
+            <li><a href="#ceny">Ceny v krajoch</a></li>
+            <li><a href="#sprievodca">Harmonogram prác</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Regionálne ceny</h5>
+          <ul class="footer-links">
+            <li><a href="#ceny">Bratislava</a></li>
+            <li><a href="#ceny">Košice</a></li>
+            <li><a href="#ceny">Žilina</a></li>
+            <li><a href="#ceny">Poprad & Tatry</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Akvizícia & Podnájom</h5>
+          <p style="color: var(--text-dim); margin-bottom: 12px; font-size: 0.85rem;">
+            Zaujíma vás kúpa alebo podnájom tejto domény pre vašu firmu?
+          </p>
+          <a href="predaj.html" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;">
+            Predaj & Podnájom domény &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 OpravaBytov.sk. Všetky práva vyhradené.
+        </div>
+        <div style="color: var(--text-dim); font-size: 0.82rem;">
+          Vygenerované s maximálnym dôrazom na výkon, nulové náklady a SEO štandardy.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modálne okno pre dopyt / kontakt -->
+  <div id="contactModal" class="modal-overlay">
+    <div class="modal-content">
+      <button type="button" class="modal-close">&times;</button>
+      <h3 id="modalTitle" style="font-size: 1.4rem; margin-bottom: 8px;">Získať nezáväznú cenovú ponuku</h3>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 24px;">
+        Vyplňte základné údaje a obdržíte orientačnú kalkuláciu a možnosti realizácie pre vašu lokalitu.
+      </p>
+
+      <form id="contactForm">
+        <input type="hidden" id="modalSubject" name="subject" value="Dopyt na rekonštrukciu">
+
+        <div class="form-group">
+          <label for="fName">Meno a priezvisko</label>
+          <input type="text" id="fName" class="form-input" placeholder="napr. Peter Novák" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fPhone">Telefónne číslo</label>
+          <input type="tel" id="fPhone" class="form-input" placeholder="napr. 090X 123 456" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fEmail">E-mailová adresa</label>
+          <input type="email" id="fEmail" class="form-input" placeholder="peter@priklad.sk" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fCity">Lokalita (Mesto / Obec)</label>
+          <input type="text" id="fCity" class="form-input" placeholder="napr. Poprad / Bratislava" required>
+        </div>
+
+        <div class="form-group">
+          <label for="fMsg">Stručný popis plánovanej rekonštrukcie (nepovinné)</label>
+          <textarea id="fMsg" class="form-textarea" rows="3" placeholder="Typ bytu, poschodie, termín realizácie..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-glow" style="width: 100%; padding: 14px; font-weight: 700;">
+          Odoslať nezáväzný dopyt &rarr;
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
