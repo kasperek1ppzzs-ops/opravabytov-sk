@@ -22,7 +22,7 @@ Projekt **OpravaBytov.sk** je navrhnutý s dvojakým strategickým cieľom:
    * Diskrétny, vysoko konverzný predajný portál (`predaj.html`).
    * **3 flexibilné modely spolupráce:**
      * **Jednorazový odkup (Predaj):** 1 490 € (trvalý prepis držiteľa v SK-NIC).
-     * **Mesačný podnájom (Lease):** 99 € / mesiac (presmerovanie na firemný web alebo kontakty na portáli).
+     * **Mesačný podnájom (Lease):** 50 € / mesiac (presmerovanie na firemný web alebo kontakty na portáli).
      * **Nájom s odkúpením (Rent-to-own):** 149 € / mesiac na 12 mesiacov.
 
 ---
