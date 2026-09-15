@@ -339,22 +339,22 @@
         <form id="domainContactForm">
           <div class="form-group">
             <label for="companyName">Názov firmy / Meno</label>
-            <input type="text" id="companyName" class="form-input" placeholder="napr. Stavebniny s.r.o. / Ing. Ján Kováč" required>
+            <input type="text" id="companyName" name="name" class="form-input" placeholder="napr. Stavebniny s.r.o. / Ing. Ján Kováč" required>
           </div>
 
           <div class="form-group">
             <label for="contactEmail">E-mailová adresa</label>
-            <input type="email" id="contactEmail" class="form-input" placeholder="kontakt@vasafirma.sk" required>
+            <input type="email" id="contactEmail" name="email" class="form-input" placeholder="kontakt@vasafirma.sk" required>
           </div>
 
           <div class="form-group">
             <label for="contactPhone">Telefónne číslo</label>
-            <input type="tel" id="contactPhone" class="form-input" placeholder="090X 123 456" required>
+            <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="090X 123 456" required>
           </div>
 
           <div class="form-group">
             <label for="preferedModel">Mám záujem o:</label>
-            <select id="preferedModel" class="form-input" style="background: #0f172a; cursor: pointer;">
+            <select id="preferedModel" name="model" class="form-input" style="background: #0f172a; cursor: pointer;">
               <option value="buy">Jednorazový odkup domény (1 490 €)</option>
               <option value="rent">Mesačný prenájom (50 € / mesiac)</option>
               <option value="rent-to-own">Nájom s odkúpením Rent-to-Own (149 € / mesiac)</option>
@@ -364,7 +364,7 @@
 
           <div class="form-group">
             <label for="contactNote">Poznámka / Vaša ponuka (nepovinné)</label>
-            <textarea id="contactNote" class="form-textarea" rows="3" placeholder="Uveďte vaše predstavy alebo otázky..."></textarea>
+            <textarea id="contactNote" name="note" class="form-textarea" rows="3" placeholder="Uveďte vaše predstavy alebo otázky..."></textarea>
           </div>
 
           <button type="submit" class="btn btn-primary btn-glow" style="width: 100%; padding: 15px; font-weight: 700; font-size: 1.05rem;">
@@ -391,27 +391,62 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
-    // Spracovanie priameho formulára na stránke predaja
+    // Spracovanie priameho formulára na stránke predaja domény cez FormSubmit
     const domainForm = document.getElementById('domainContactForm');
     if (domainForm) {
-      domainForm.addEventListener('submit', (e) => {
+      domainForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = domainForm.querySelector('button[type="submit"]');
+        const originalBtnText = btn.textContent;
         btn.textContent = 'Odosielam dopyt...';
         btn.disabled = true;
 
-        setTimeout(() => {
+        const companyName = document.getElementById('companyName')?.value || '';
+        const contactEmail = document.getElementById('contactEmail')?.value || '';
+        const contactPhone = document.getElementById('contactPhone')?.value || '';
+        const modelSelect = document.getElementById('preferedModel');
+        const modelText = modelSelect ? modelSelect.options[modelSelect.selectedIndex]?.text : '';
+        const contactNote = document.getElementById('contactNote')?.value || '';
+
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/peterkasperek.sk@gmail.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              _subject: `[OpravaBytov.sk] Záujem o doménu - ${companyName}`,
+              _template: 'table',
+              _captcha: 'false',
+              'Záujemca / Firma': companyName,
+              'E-mail': contactEmail,
+              'Telefón': contactPhone,
+              'Preferovaný model': modelText,
+              'Poznámka / Ponuka': contactNote || 'Neuvedená'
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error('Chyba servera pri odosielaní');
+          }
+
           domainForm.innerHTML = `
             <div style="text-align: center; padding: 40px 10px;">
               <div style="font-size: 3.5rem; margin-bottom: 14px; color: #10b981;">✓</div>
               <h3 style="font-size: 1.6rem; margin-bottom: 12px; color: #fff;">Váš dopyt bol úspešne odoslaný!</h3>
               <p style="color: #94a3b8; font-size: 1rem; line-height: 1.6; max-width: 480px; margin: 0 auto 20px;">
-                Ďakujeme za váš záujem o doménu <strong>OpravaBytov.sk</strong>. Vašu správu sme zaevidovali a ozveme sa vám s návrhom postupu.
+                Ďakujeme za váš záujem o doménu <strong>OpravaBytov.sk</strong>. Váš dopyt sme zaevidovali a čoskoro vás budeme kontaktovať na <strong>${contactEmail}</strong> alebo <strong>${contactPhone}</strong>.
               </p>
               <a href="index.html" class="btn btn-secondary" style="font-size: 0.9rem;">Späť na hlavnú stránku</a>
             </div>
           `;
-        }, 700);
+        } catch (err) {
+          console.error('Form submit error:', err);
+          btn.textContent = originalBtnText;
+          btn.disabled = false;
+          alert('Pri odosielaní dopytu nastala chyba. Prosím, skúste to znova alebo napíšte priamo na peterkasperek.sk@gmail.com');
+        }
       });
     }
   </script>

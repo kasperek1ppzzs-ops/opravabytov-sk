@@ -775,23 +775,59 @@ function initModals() {
   }
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
-      submitBtn.textContent = 'Odosielam...';
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Odosielam dopyt...';
       submitBtn.disabled = true;
 
-      setTimeout(() => {
+      const fName = document.getElementById('fName')?.value || '';
+      const fPhone = document.getElementById('fPhone')?.value || '';
+      const fEmail = document.getElementById('fEmail')?.value || '';
+      const fCity = document.getElementById('fCity')?.value || '';
+      const fMsg = document.getElementById('fMsg')?.value || '';
+      const subject = modalSubjectInput?.value || 'Dopyt na rekonštrukciu bytu';
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/peterkasperek.sk@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `[OpravaBytov.sk] ${subject} - ${fName} (${fCity})`,
+            _template: 'table',
+            _captcha: 'false',
+            'Predmet dopytu': subject,
+            'Meno a priezvisko': fName,
+            'Telefón': fPhone,
+            'E-mail': fEmail,
+            'Lokalita': fCity,
+            'Správa a kalkulácia': fMsg || 'Bez doplňujúcej správy'
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Chyba servera pri odosielaní');
+        }
+
         contactForm.innerHTML = `
           <div style="text-align: center; padding: 30px 10px;">
             <div style="font-size: 3rem; margin-bottom: 12px; color: #10b981;">✓</div>
-            <h3 style="margin-bottom: 10px; font-size: 1.4rem;">Správa bola úspešne odoslaná!</h3>
+            <h3 style="margin-bottom: 10px; font-size: 1.4rem; color: #fff;">Správa bola úspešne odoslaná!</h3>
             <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">
-              Ďakujeme za váš záujem. Správu sme zaevidovali a ozveme sa vám v najkratšom možnom čase.
+              Ďakujeme za váš záujem. Správu sme zaevidovali a ozveme sa vám v najkratšom možnom čase na <strong>${fEmail}</strong> alebo <strong>${fPhone}</strong>.
             </p>
           </div>
         `;
-      }, 700);
+      } catch (err) {
+        console.error('Form submit error:', err);
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+        alert('Pri odosielaní správy nastala chyba. Prosím, skúste to znova alebo napíšte priamo na peterkasperek.sk@gmail.com');
+      }
     });
   }
 }
