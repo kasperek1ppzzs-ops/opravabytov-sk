@@ -36,6 +36,34 @@
         "inLanguage": "sk-SK"
       },
       {
+        "@type": "Organization",
+        "@id": "https://opravabytov.sk/#organization",
+        "name": "OpravaBytov.sk",
+        "url": "https://opravabytov.sk/",
+        "logo": "https://opravabytov.sk/assets/images/og-image.jpg",
+        "email": "peterkasperek.sk@gmail.com",
+        "areaServed": "SK",
+        "description": "Nezávislý slovenský portál a cenový kalkulátor pre rekonštrukcie bytov, kúpeľní a bytových jadier."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://opravabytov.sk/#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Domov",
+            "item": "https://opravabytov.sk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Kalkulačka rekonštrukcie",
+            "item": "https://opravabytov.sk/#kalkulacka"
+          }
+        ]
+      },
+      {
         "@type": "WebApplication",
         "@id": "https://opravabytov.sk/#calculator",
         "name": "Kalkulačka ceny rekonštrukcie bytu 2026",
@@ -87,6 +115,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'><path d='M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'/></svg>">
 </head>
@@ -122,8 +151,9 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#kalkulacka">Kalkulačka 2026</a></li>
-          <li><a href="#porovnanie">Pred & Po</a></li>
-          <li><a href="#ceny">Cenový radar miest</a></li>
+          <li><a href="rekonstrukcia-bytoveho-jadra.html">Bytové jadro</a></li>
+          <li><a href="rekonstrukcia-kupelne.html">Kúpeľňa</a></li>
+          <li><a href="#ceny">Cenový radar</a></li>
           <li><a href="#sprievodca">Postup prác</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="predaj.html" style="color: #fbbf24;">Predaj & Prenájom</a></li>
@@ -674,12 +704,13 @@
         </div>
 
         <div class="footer-col">
-          <div class="footer-heading">Kalkulácie</div>
+          <div class="footer-heading">Cenníky & Sprievodcovia</div>
           <ul class="footer-links">
-            <li><a href="#kalkulacka">Kalkulačka ceny</a></li>
+            <li><a href="rekonstrukcia-bytoveho-jadra.html">Rekonštrukcia bytového jadra</a></li>
+            <li><a href="rekonstrukcia-kupelne.html">Rekonštrukcia kúpeľne</a></li>
+            <li><a href="#kalkulacka">Kalkulačka ceny bytu 2026</a></li>
             <li><a href="#porovnanie">Pred a po rekonštrukcii</a></li>
-            <li><a href="#ceny">Ceny v krajoch</a></li>
-            <li><a href="#sprievodca">Harmonogram prác</a></li>
+            <li><a href="#sprievodca">Harmonogram a postup prác</a></li>
           </ul>
         </div>
 

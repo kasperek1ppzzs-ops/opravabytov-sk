@@ -1,0 +1,16 @@
+{
+  "name": "OpravaBytov.sk – Kalkulačka ceny rekonštrukcie 2026",
+  "short_name": "OpravaBytov",
+  "description": "Slovenský cenový sprievodca a kalkulátor nákladov rekonštrukcie bytu, jadra a kúpeľne.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070a12",
+  "theme_color": "#070a12",
+  "icons": [
+    {
+      "src": "/assets/images/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg"
+    }
+  ]
+}
