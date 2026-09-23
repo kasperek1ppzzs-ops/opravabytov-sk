@@ -924,14 +924,14 @@ a {
 
 .compare-before {
   background-color: #1a1a1a;
-  background-image: url('../images/before.jpg');
+  background-image: url('../images/before.webp');
   background-size: cover;
   background-position: center;
 }
 
 .compare-after {
   background-color: #0f172a;
-  background-image: url('../images/after.jpg');
+  background-image: url('../images/after.webp');
   background-size: cover;
   background-position: center;
   width: 50%;
