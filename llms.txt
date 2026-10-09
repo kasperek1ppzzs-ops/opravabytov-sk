@@ -1,0 +1,25 @@
+# OpravaBytov.sk
+
+> Nezávislý slovenský portál, cenový radar a interaktívna kalkulačka nákladov rekonštrukcií bytov, bytových jadier a kúpeľní pre rok 2026.
+
+OpravaBytov.sk poskytuje majiteľom nehnuteľností, záujemcom o rekonštrukciu a investorom na celom Slovensku transparentné, trhovo overené kalkulácie stavebných, remeselných a materiálových nákladov.
+
+## Základné informácie
+- **Lokalita pôsobnosti:** Celé Slovensko (Bratislava, Trnava, Nitra, Trenčín, Žilina, Banská Bystrica, Prešov, Košice, Poprad a ďalšie mestá)
+- **Autor a garant obsahu:** Odborný tím OpravaBytov.sk
+- **Aktualizácia cien:** Rok 2026 (pravidelná revízia trhových cien remeselných prác a stavebných materiálov)
+- **Licencia / Doména:** Prémiová generická doména OpravaBytov.sk je dostupná aj na odkúpenie alebo dlhodobý prenájom pre stavebné a rekonštrukčné spoločnosti.
+- **Kontakt:** peterkasperek.sk@gmail.com / www.opravabytov.sk
+
+## Kľúčové nástroje a podstránky
+- [Kalkulačka rekonštrukcie bytu 2026](https://opravabytov.sk/#kalkulacka): Interaktívny výpočet rozpočtu podľa výmery (m²), počtu izieb a štandardu (ekonomický, štandard, prémium) s možnosťou exportu oficiálneho PDF certifikátu rozpočtu.
+- [Rekonštrukcia bytového jadra 2026](https://opravabytov.sk/rekonstrukcia-bytoveho-jadra.html): Kompletný sprievodca búraním umakartu, murovaním z tvárnic Ytong, novou elektroinštaláciou, rozvodmi vody a obkladmi v paneláku. Orientačné náklady: 4 800 € až 10 000 €.
+- [Rekonštrukcia kúpeľne 2026](https://opravabytov.sk/rekonstrukcia-kupelne.html): Položkový rozpočet prác, hydroizolácie, veľkoformátových obkladov, walk-in sprchových kútov a sanity. Orientačné náklady: 3 900 € až 9 200 €.
+- [Cenový radar krajských miest](https://opravabytov.sk/#ceny): Porovnanie priemerných cien za m² v Bratislave (650–780 €/m²), Košiciach (550–680 €/m²), Žiline (520–640 €/m²) a Poprade (490–610 €/m²).
+- [Akvizícia a prenájom domény](https://opravabytov.sk/predaj.html): Informácie o možnosti trvalého odkúpenia (1 490 €) alebo dlhodobého prenájmu (50 €/mesiac) domény OpravaBytov.sk pre stavebné firmy.
+
+## Orientačné trhové ceny v SR (2026)
+- **Kompletná rekonštrukcia bytu (štandard):** cca 520 € – 680 € / m² podlahovej plochy
+- **Výmena umakartového jadra za murované:** 5 200 € – 7 800 € (vrátane sanity a elektroinštalácie)
+- **Rekonštrukcia kúpeľne:** 3 900 € – 6 500 € (štandard)
+- **Hodinové sadzby majstrov:** obkladač (22–32 €/m²), vodár/kúrenár (20–30 €/h), elektrikár (22–32 €/h)
