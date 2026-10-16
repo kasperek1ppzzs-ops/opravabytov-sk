@@ -517,7 +517,23 @@ function initCalculator() {
     premium: 'Prémiový (Veľkoformátové obklady, bezfalcové dvere, dizajnová sanita)'
   };
 
+  function ensurePrintSheet() {
+    let sheet = document.getElementById('printSheet');
+    if (!sheet) {
+      const template = document.getElementById('pdfPrintTemplate');
+      if (template) {
+        const clone = template.content.cloneNode(true);
+        document.body.appendChild(clone);
+        sheet = document.getElementById('printSheet');
+      }
+    }
+    return sheet;
+  }
+
   function updatePrintSheet(tMin, tMax, lCost, mCost) {
+    const sheet = document.getElementById('printSheet');
+    if (!sheet) return;
+
     const printDate = document.getElementById('printDate');
     const printCode = document.getElementById('printCode');
     const printRooms = document.getElementById('printRooms');
@@ -545,15 +561,17 @@ function initCalculator() {
     if (printStandard) printStandard.textContent = standardLabels[state.standard] || 'Štandard';
     if (printDuration && durationEl) printDuration.textContent = durationEl.textContent;
 
-    // Položky prác
+    // Položky prác s plnou prístupnosťou (A11y)
     if (printTasksList) {
       printTasksList.innerHTML = Object.entries(taskLabels).map(([key, label]) => {
         const isActive = !!state.tasks[key];
-        const icon = isActive ? '✓' : '✕';
+        const iconSym = isActive ? '&#10003;' : '&#10005;';
+        const ariaTxt = isActive ? 'Zahrnuté v rozpočte' : 'Nezahrnuté';
         const cls = isActive ? 'active' : 'inactive';
         return `
           <div class="print-task-item ${cls}">
-            <span class="print-task-icon">${icon}</span>
+            <span class="print-task-icon" aria-hidden="true">${iconSym}</span>
+            <span class="sr-only">${ariaTxt}: </span>
             <span>${label}</span>
           </div>
         `;
@@ -574,7 +592,10 @@ function initCalculator() {
   }
 
   // Globálne sprístupnenie stavu a funkcie kalkulačky
-  window._updatePrintSheet = updatePrintSheet;
+  window._updatePrintSheet = () => {
+    ensurePrintSheet();
+    updatePrintSheet();
+  };
   window._getCalcState = () => ({
     rooms: state.rooms,
     area: state.area,
@@ -591,17 +612,18 @@ function initCalculator() {
   // Tlač / PDF Export rozpočtu
   if (printBtn) {
     printBtn.addEventListener('click', () => {
+      ensurePrintSheet();
       updatePrintSheet();
       window.print();
     });
   }
 
   window.addEventListener('beforeprint', () => {
+    ensurePrintSheet();
     updatePrintSheet();
   });
 
   calculatePrice(false);
-  updatePrintSheet();
 }
 
 // Plynulá animácia čísel (requestAnimationFrame) so zamedzením kolízií a skákania
@@ -654,9 +676,12 @@ function initComparisonSlider() {
   if (!container || !sliderInput || !afterImage || !handle) return;
 
   function updateSlider(val) {
-    afterImage.style.width = `${val}%`;
+    afterImage.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
     handle.style.left = `${val}%`;
   }
+
+  // Inicializačná poloha
+  updateSlider(sliderInput.value || 50);
 
   sliderInput.addEventListener('input', (e) => {
     updateSlider(e.target.value);
@@ -686,25 +711,13 @@ function initComparisonSlider() {
 // 6. FAQ Akordeón & Modálne Dialógy
 // ==========================================================================
 function initFaqAccordion() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-q');
-    const answer = item.querySelector('.faq-a');
-    if (!question || !answer) return;
-
-    answer.style.display = item.classList.contains('active') ? 'block' : 'none';
-
-    question.addEventListener('click', () => {
-      const isOpen = item.classList.contains('active');
-      faqItems.forEach(i => {
-        i.classList.remove('active');
-        const a = i.querySelector('.faq-a');
-        if (a) a.style.display = 'none';
-      });
-
-      if (!isOpen) {
-        item.classList.add('active');
-        answer.style.display = 'block';
+  const faqDetails = document.querySelectorAll('.faq-list details');
+  faqDetails.forEach(detail => {
+    detail.addEventListener('toggle', () => {
+      if (detail.open) {
+        faqDetails.forEach(other => {
+          if (other !== detail) other.open = false;
+        });
       }
     });
   });
@@ -713,58 +726,78 @@ function initFaqAccordion() {
 function initModals() {
   const modal = document.getElementById('contactModal');
   const openBtns = document.querySelectorAll('[data-open-modal]');
-  const closeBtns = document.querySelectorAll('.modal-close, .modal-overlay');
+  const closeBtns = document.querySelectorAll('.modal-close');
   const modalTitle = document.getElementById('modalTitle');
   const modalSubjectInput = document.getElementById('modalSubject');
   const contactForm = document.getElementById('contactForm');
 
   if (!modal) return;
 
+  function openModal(type = 'dopyt') {
+    if (type === 'domain') {
+      if (modalTitle) modalTitle.textContent = 'Mám záujem o kúpu domény OpravaBytov.sk';
+      if (modalSubjectInput) modalSubjectInput.value = 'Akvizícia domény OpravaBytov.sk (1 490 €)';
+    } else {
+      if (modalTitle) modalTitle.textContent = 'Získať nezáväznú cenovú ponuku';
+      if (modalSubjectInput) modalSubjectInput.value = 'Dopyt na rekonštrukciu bytu';
+
+      // Inteligentné predvyplnenie údajov z kalkulačky do správy
+      const msgTextarea = document.getElementById('fMsg');
+      if (msgTextarea && typeof window._getCalcState === 'function') {
+        const calc = window._getCalcState();
+        if (!msgTextarea.value || msgTextarea.dataset.autofilled === 'true') {
+          msgTextarea.value = `Dobrý deň,\nprosím o cenovú ponuku a obhliadku na rekonštrukciu bytu na základe kalkulačky:\n` +
+            `• Byt: ${calc.rooms}-izbový, výmera: ${calc.area} m²\n` +
+            `• Úroveň realizácie: ${calc.standardName}\n` +
+            `• Orientačný rozpočet: ${calc.priceMin} – ${calc.priceMax} (odhad: ${calc.duration})\n` +
+            `• Vybrané práce: ${calc.activeTasks.join(', ')}\n\n` +
+            `Môj časový horizont realizácie: `;
+          msgTextarea.dataset.autofilled = 'true';
+        }
+      }
+    }
+
+    if (typeof modal.showModal === 'function') {
+      modal.showModal();
+    } else {
+      modal.classList.add('active');
+    }
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (typeof modal.close === 'function') {
+      modal.close();
+    } else {
+      modal.classList.remove('active');
+    }
+    document.body.style.overflow = '';
+  }
+
   openBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const type = btn.dataset.modalType || 'dopyt';
-      if (type === 'domain') {
-        if (modalTitle) modalTitle.textContent = 'Mám záujem o kúpu domény OpravaBytov.sk';
-        if (modalSubjectInput) modalSubjectInput.value = 'Akvizícia domény OpravaBytov.sk (1 490 €)';
-      } else {
-        if (modalTitle) modalTitle.textContent = 'Získať nezáväznú cenovú ponuku';
-        if (modalSubjectInput) modalSubjectInput.value = 'Dopyt na rekonštrukciu bytu';
-
-        // Inteligentné predvyplnenie údajov z kalkulačky do správy
-        const msgTextarea = document.getElementById('fMsg');
-        if (msgTextarea && typeof window._getCalcState === 'function') {
-          const calc = window._getCalcState();
-          if (!msgTextarea.value || msgTextarea.dataset.autofilled === 'true') {
-            msgTextarea.value = `Dobrý deň,\nprosím o cenovú ponuku a obhliadku na rekonštrukciu bytu na základe kalkulačky:\n` +
-              `• Byt: ${calc.rooms}-izbový, výmera: ${calc.area} m²\n` +
-              `• Úroveň realizácie: ${calc.standardName}\n` +
-              `• Orientačný rozpočet: ${calc.priceMin} – ${calc.priceMax} (odhad: ${calc.duration})\n` +
-              `• Vybrané práce: ${calc.activeTasks.join(', ')}\n\n` +
-              `Môj časový horizont realizácie: `;
-            msgTextarea.dataset.autofilled = 'true';
-          }
-        }
-      }
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      openModal(type);
     });
   });
 
   closeBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
-      if (e.target === btn || btn.classList.contains('modal-close')) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+      e.preventDefault();
+      closeModal();
     });
   });
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
+  // Kliknutie na backdrop (mimo modálneho obsahu) zatvorí dialóg
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
     }
+  });
+
+  modal.addEventListener('close', () => {
+    document.body.style.overflow = '';
   });
 
   const msgTextarea = document.getElementById('fMsg');
