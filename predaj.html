@@ -77,7 +77,7 @@
   </noscript>
 
   <link rel="manifest" href="/manifest.json">
-  <link rel="stylesheet" href="assets/css/style.min.css">
+  <link rel="stylesheet" href="assets/css/style.min.css?v=20261018">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'><path d='M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'/></svg>">
 </head>
 <body>
@@ -121,7 +121,7 @@
     <!-- Pitch Hero -->
     <section class="pitch-hero">
       <div class="container">
-        <div class="hero-badge">
+        <div class="hero-badge pitch-hero-badge">
           <span class="hero-badge-pulse"></span>
           Prémiová príležitosť pre stavebné a realizačné spoločnosti
         </div>
@@ -230,7 +230,7 @@
               </p>
 
               <div style="margin: 20px 0;">
-                <div style="font-size: 2.3rem; font-weight: 800; color: #fff;">50 € <span style="font-size: 1rem; color: var(--text-dim); font-weight: 500;">/ mesiac</span></div>
+                <div class="pitch-price" style="font-size: 2.3rem; font-weight: 800;">50 € <span style="font-size: 1rem; font-weight: 500;">/ mesiac</span></div>
                 <div style="font-size: 0.8rem; color: var(--text-dim);">fakturované mesačne alebo kvartálne</div>
               </div>
 
@@ -248,8 +248,8 @@
           </div>
 
           <!-- 2. Trvalý nákup / Akvizícia (Najvýhodnejšie) -->
-          <div class="pitch-card" style="border-color: var(--primary); background: rgba(20, 27, 45, 0.95); box-shadow: 0 10px 40px var(--primary-glow); display: flex; flex-direction: column; justify-content: space-between; position: relative;">
-            <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #0b0f19; padding: 4px 16px; border-radius: var(--radius-full); font-size: 0.76rem; font-weight: 800; text-transform: uppercase;">
+          <div class="pitch-card pitch-card-featured" style="border-color: var(--primary); box-shadow: 0 10px 40px var(--primary-glow); display: flex; flex-direction: column; justify-content: space-between; position: relative;">
+            <div class="pitch-featured-badge" style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); padding: 4px 16px; border-radius: var(--radius-full); font-size: 0.76rem; font-weight: 800; text-transform: uppercase;">
               Najpopulárnejšia voľba
             </div>
 
@@ -288,7 +288,7 @@
               </p>
 
               <div style="margin: 20px 0;">
-                <div style="font-size: 2.3rem; font-weight: 800; color: #fff;">149 € <span style="font-size: 1rem; color: var(--text-dim); font-weight: 500;">/ 12 mesiacov</span></div>
+                <div class="pitch-price" style="font-size: 2.3rem; font-weight: 800;">149 € <span style="font-size: 1rem; font-weight: 500;">/ 12 mesiacov</span></div>
                 <div style="font-size: 0.8rem; color: var(--text-dim);">garantovaná fixná cena bez navýšenia</div>
               </div>
 
@@ -373,7 +373,7 @@
 
           <div class="form-group">
             <label for="preferedModel">Mám záujem o:</label>
-            <select id="preferedModel" name="model" class="form-input" style="background: #0f172a; cursor: pointer;">
+            <select id="preferedModel" name="model" class="form-input domain-model-select" style="cursor: pointer;">
               <option value="buy">Jednorazový odkup domény (1 490 €)</option>
               <option value="rent">Mesačný prenájom (50 € / mesiac)</option>
               <option value="rent-to-own">Nájom s odkúpením Rent-to-Own (149 € / mesiac)</option>
@@ -401,7 +401,7 @@
         <div>&copy; 2026 OpravaBytov.sk. Ponuku spravuje <strong>Odborný tím OpravaBytov.sk</strong>. Aktualizované: <time datetime="2026-10-09">9. októbra 2026</time>.</div>
         <div>
           <a href="index.html#o-nas" style="margin-right: 16px; color: var(--text-dim);">O nás</a>
-          <a href="index.html" style="color: var(--primary);">Späť na portál a kalkulačku &rarr;</a>
+          <a href="index.html" class="footer-current-link">Späť na portál a kalkulačku &rarr;</a>
         </div>
       </div>
     </div>
@@ -411,7 +411,7 @@
   <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
-  <script defer src="assets/js/main.min.js"></script>
+  <script defer src="assets/js/main.min.js?v=20261018"></script>
   <script>
     // Spracovanie priameho formulára na stránke predaja domény cez FormSubmit
     const domainForm = document.getElementById('domainContactForm');

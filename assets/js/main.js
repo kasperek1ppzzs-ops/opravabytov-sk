@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const lenis = initLenisSmoothScroll();
 
   // 2. Inicializácia GSAP ScrollTrigger animácií a odometrov
-  initGsapAnimations(lenis);
+  // Editorial content stays readable before animation frames or scroll events.
+  if (!document.querySelector('.hero-editorial')) initGsapAnimations(lenis);
 
   // 3. Aceternity UI Spotlight a 3D Tilt efekt
   initSpotlightAndTilt();
@@ -97,70 +98,29 @@ function initNativeSmoothScroll() {
 // 2. GSAP ScrollTrigger Animácie & Dynamické Počítadlá (Odometre)
 // ==========================================================================
 function initGsapAnimations(lenis) {
-  if (typeof gsap === 'undefined') return;
+  if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   if (typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  // A. Hero sekcia reveal sekvencia
-  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  // The editorial hero must be visible immediately. The legacy reveal only
+  // applies to the former hero composition where its target elements exist.
+  if (!document.querySelector('.hero-editorial')) {
+    const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    const heroBadge = document.querySelector('.hero-badge');
+    const heroStats = document.querySelectorAll('.hero-stats .stat-box');
 
-  heroTl
-    .from('.hero-badge', { y: -20, opacity: 0, duration: 0.8, delay: 0.1 })
-    .from('.hero h1', { y: 35, opacity: 0, duration: 0.9 }, '-=0.5')
-    .from('.hero-lead', { y: 20, opacity: 0, duration: 0.8 }, '-=0.6')
-    .from('.hero .btn', { scale: 0.92, opacity: 0, stagger: 0.15, duration: 0.6 }, '-=0.5')
-    .from('.hero-stats .stat-box', { 
-      y: 30, 
-      opacity: 0, 
-      stagger: 0.12, 
-      duration: 0.8,
-      onComplete: () => {
-        triggerCounters();
-      }
-    }, '-=0.4')
-    .from('.trust-badges-wrap .trust-badge-item', { 
-      y: 15, 
-      opacity: 0, 
-      stagger: 0.1, 
-      duration: 0.6 
-    }, '-=0.4');
+    if (heroBadge) heroTl.from(heroBadge, { y: -20, opacity: 0, duration: 0.8, delay: 0.1 });
+    heroTl
+      .from('.hero h1', { y: 35, opacity: 0, duration: 0.9 }, heroBadge ? '-=0.5' : 0)
+      .from('.hero-lead', { y: 20, opacity: 0, duration: 0.8 }, '-=0.6')
+      .from('.hero .btn', { scale: 0.92, opacity: 0, stagger: 0.15, duration: 0.6 }, '-=0.5');
 
-  // Funkcia pre odometrové počítadlá v Hero sekcii
-  let countersAnimated = false;
-  function triggerCounters() {
-    if (countersAnimated) return;
-    countersAnimated = true;
-
-    // 1. Priemerná cena: 0 -> 580 €
-    const priceStatEl = document.querySelector('[data-counter="580"]');
-    if (priceStatEl) {
-      const obj = { val: 0 };
-      gsap.to(obj, {
-        val: 580,
-        duration: 1.8,
-        ease: 'power2.out',
-        onUpdate: () => {
-          priceStatEl.textContent = `${Math.round(obj.val)} €`;
-        }
-      });
+    if (heroStats.length > 0) {
+      heroTl.from(heroStats, { y: 30, opacity: 0, stagger: 0.12, duration: 0.8 }, '-=0.4');
     }
-
-    // 2. Úspora: 0 -> 15 – 25 %
-    const saveStatEl = document.querySelector('[data-counter-range="15|25"]');
-    if (saveStatEl) {
-      const obj = { min: 0, max: 0 };
-      gsap.to(obj, {
-        min: 15,
-        max: 25,
-        duration: 1.8,
-        ease: 'power2.out',
-        onUpdate: () => {
-          saveStatEl.textContent = `${Math.round(obj.min)} – ${Math.round(obj.max)} %`;
-        }
-      });
-    }
+    heroTl.from('.trust-badges-wrap .trust-badge-item', { y: 15, opacity: 0, stagger: 0.1, duration: 0.6 }, '-=0.4');
   }
 
   // B. Fázované ScrollTrigger animácie sekcií
@@ -302,6 +262,7 @@ function initCalculator() {
   const stickyPriceMin = document.getElementById('stickyPriceMin');
   const stickyPriceMax = document.getElementById('stickyPriceMax');
   const stickySpec = document.getElementById('stickySpec');
+  const heroBudgetEstimate = document.getElementById('heroBudgetEstimate');
 
   if (!areaSlider || !priceMinEl) return;
 
@@ -470,6 +431,11 @@ function initCalculator() {
       animateNumber(stickyPriceMax, totalMax, instant);
       const standardLabels = { usporny: 'Úsporný', standard: 'Štandard', premium: 'Prémiový' };
       stickySpec.textContent = `${state.rooms}-izbový • ${state.area} m² • ${standardLabels[state.standard]}`;
+    }
+
+    // Živý súhrn v úvodnej karte používa vždy aktuálny výpočet.
+    if (heroBudgetEstimate) {
+      heroBudgetEstimate.textContent = `${totalMin.toLocaleString('sk-SK')} € – ${totalMax.toLocaleString('sk-SK')} €`;
     }
 
     // Okamžitá synchronizácia s dedikovaným tlačovým hárkom
@@ -676,7 +642,7 @@ function initComparisonSlider() {
   if (!container || !sliderInput || !afterImage || !handle) return;
 
   function updateSlider(val) {
-    afterImage.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+    afterImage.style.clipPath = `polygon(${val}% 0, 100% 0, 100% 100%, ${val}% 100%)`;
     handle.style.left = `${val}%`;
   }
 
