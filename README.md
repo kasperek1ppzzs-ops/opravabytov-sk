@@ -48,6 +48,7 @@ Doména `opravabytov.sk` v minulosti obsahovala web stavebnej firmy. Web teraz b
 | `/pages/rekonstrukcie`  | `/` | `pages/rekonstrukcie.html` |
 | `/pages/galeria` | `/#porovnanie` | `pages/galeria.html` |
 | `/blogs/news/oplati-sa-velka-rekonstrukcia-bytu` | `/` | `blogs/news/oplati-sa-velka-rekonstrukcia-bytu.html` |
+| `/pages/contact` | `/#kontakt` (otvorí kontaktný formulár) | `pages/contact.html` |
 
 Staré adresy bez obsahovej náhrady (napr. `/pages/hodinovy-majster`) zámerne vracajú 404 – presmerovanie nesúvisiacej stránky na úvod by Google vyhodnotil ako „soft 404“. Ak sa web presunie na Cloudflare Pages, `_redirects` sa uplatní automaticky.
 
