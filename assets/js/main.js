@@ -865,3 +865,11 @@ function initMobileNav() {
   });
 }
 
+
+// Odkazy „Kontakt“ z podstránok vedú na /#kontakt – úvodná stránka nemá takú sekciu,
+// kontakt je modálne okno, preto ho pri tejto adrese otvoríme (po initModals vyššie).
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.location.hash !== '#kontakt') return;
+  const trigger = document.querySelector('[data-open-modal][data-modal-type="kontakt"]');
+  if (trigger) trigger.click();
+});
