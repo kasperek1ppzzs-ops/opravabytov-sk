@@ -39,17 +39,17 @@ Web je navrhnutý ako moderná, ultra-rýchla statická aplikácia bez potreby p
 
 ---
 
-## 🌐 Zachovanie SEO histórie (301 Presmerovania)
+## 🌐 Zachovanie SEO histórie (presmerovania starých adries)
 
-Doména `opravabytov.sk` v minulosti obsahovala aktívny web stavebnej firmy. Aby sme nestratili historickú hodnotu a odkazy indexované v Google, súbor `_redirects` zabezpečuje trvalé presmerovania:
+Doména `opravabytov.sk` v minulosti obsahovala web stavebnej firmy. Web teraz beží na **GitHub Pages**, ktoré súbor `_redirects` ignoruje (ten funguje len na Cloudflare Pages). Hlavné staré adresy preto presmerúvajú malé HTML stránky (okamžitý `meta refresh` + `canonical`, Google ich berie ako trvalé presmerovanie):
 
-| Pôvodná historická URL | Nové presmerovanie (301) | Účel |
-|-------------------------|--------------------------|------|
-| `/pages/rekonstrukcie`  | `/` (Homepage) | Zachovanie autority kľúčového slova |
-| `/pages/hodinovy-majster` | `/` (Homepage) | Presun návštevnosti bez 404 |
-| `/blogs/news/*`         | `/` (Homepage) | Ochrana pred mŕtvymi odkazmi |
+| Pôvodná historická URL | Presmerovanie | Súbor |
+|-------------------------|---------------|-------|
+| `/pages/rekonstrukcie`  | `/` | `pages/rekonstrukcie.html` |
+| `/pages/galeria` | `/#porovnanie` | `pages/galeria.html` |
+| `/blogs/news/oplati-sa-velka-rekonstrukcia-bytu` | `/` | `blogs/news/oplati-sa-velka-rekonstrukcia-bytu.html` |
 
----
+Staré adresy bez obsahovej náhrady (napr. `/pages/hodinovy-majster`) zámerne vracajú 404 – presmerovanie nesúvisiacej stránky na úvod by Google vyhodnotil ako „soft 404“. Ak sa web presunie na Cloudflare Pages, `_redirects` sa uplatní automaticky.
 
 ## ⚙️ Ako prepojiť doménu na Cloudflare Pages (Krok za krokom)
 

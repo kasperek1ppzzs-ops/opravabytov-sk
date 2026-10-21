@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rekonštrukcia bytu 2026: Kalkulačka ceny | OpravaBytov.sk</title>
-  <meta name="description" content="Objektívny sprievodca rekonštrukciou bytu v roku 2026. Interaktívna kalkulačka nákladov, ceny za m² v krajských mestách SR a overené postupy rekonštrukcie bytového jadra.">
+  <meta name="description" content="Kalkulačka ceny rekonštrukcie bytu 2026: orientačný rozpočet podľa m² a štandardu, ceny za m² v krajských mestách SR a postup rekonštrukcie krok za krokom.">
   <meta name="author" content="Odborný tím OpravaBytov.sk">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="canonical" href="https://opravabytov.sk/">
@@ -62,7 +62,7 @@
         "@id": "https://opravabytov.sk/#organization",
         "name": "OpravaBytov.sk",
         "url": "https://opravabytov.sk/",
-        "logo": "https://opravabytov.sk/assets/images/og-image.jpg",
+        "logo": "https://opravabytov.sk/assets/images/icon-512.png",
         "email": "peterkasperek.sk@gmail.com",
         "areaServed": "SK",
         "description": "Nezávislý slovenský portál a cenový kalkulátor pre rekonštrukcie bytov, kúpeľní a bytových jadier."
@@ -133,20 +133,16 @@
   </script>
 
   <!-- Preconnect pre maximálne zrýchlenie sieťových požiadaviek -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/images/hero-apartment-after.webp" imagesrcset="assets/images/hero-apartment-after-640w.webp 640w, assets/images/hero-apartment-after.webp 1280w" imagesizes="(max-width: 850px) 100vw, 60vw" fetchpriority="high">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
-  </noscript>
 
   <link rel="manifest" href="/manifest.json">
-  <link rel="stylesheet" href="assets/css/style.min.css?v=20261018">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'><path d='M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'/></svg>">
+  <link rel="stylesheet" href="assets/css/style.min.css?v=20261021">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png">
 </head>
 <body>
 
@@ -167,7 +163,7 @@
   <!-- Hlavná navigácia -->
   <header class="site-header">
     <div class="container nav-wrap">
-      <a href="index.html" class="logo">
+      <a href="/" class="logo">
         <div class="logo-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
