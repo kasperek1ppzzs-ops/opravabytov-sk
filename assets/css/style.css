@@ -2098,3 +2098,6 @@ dialog.modal-dialog, .modal-content { background: #fffdf9; color: #24211e; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
 
+/* Dotykové ciele v pätičke najmenej 24 px na výšku (WCAG 2.5.8); medzera zmenšená, aby sa rozostupy nezmenili. */
+.footer-links{gap:2px}.footer-links a,.footer-bottom a{display:inline-block;padding-block:4px}
+nav[aria-label="Omrvinková navigácia"] a{display:inline-block;padding-block:4px}
