@@ -133,8 +133,6 @@
   </script>
 
   <!-- Preconnect pre maximálne zrýchlenie sieťových požiadaviek -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="assets/images/hero-apartment-after.webp" imagesrcset="assets/images/hero-apartment-after-640w.webp 640w, assets/images/hero-apartment-after.webp 1280w" imagesizes="(max-width: 850px) 100vw, 60vw" fetchpriority="high">
 
@@ -912,9 +910,9 @@
   </template>
 
   <!-- Kinetické scrollovanie a animácie (Lenis & GSAP) s asynchrónnym defer načítaním bez blokovania vykreslenia -->
-  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+  <script defer src="assets/js/vendor/lenis.min.js?v=1.1.18"></script>
+  <script defer src="assets/js/vendor/gsap.min.js?v=3.12.7"></script>
+  <script defer src="assets/js/vendor/ScrollTrigger.min.js?v=3.12.7"></script>
   <script defer src="assets/js/main.min.js?v=20261022"></script>
 </body>
 </html>
